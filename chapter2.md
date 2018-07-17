@@ -30,10 +30,10 @@ You will follow the same steps we have completed for the time-based and size-bas
 - Instruction 4 - Plot the heatmap by passing the `quantity_cohorts` dataset to the function
 
 `@hint`
-- Here is the hint for this setup problem. 
-- It should get students 50% of the way to the correct answer.
-- So don't provide the answer, but don't just reiterate the instructions.
-- Typically one hint per instruction is a sensible amount.
+- Did you filter out the first cohort index, and have the correct values in the `groupby` clause?
+- Make sure your number of quantiles is 4, and your range starts counting from 1
+- Have you used `TotalSum` for the average spend? Also, check if your `pivot` call has the right values
+- Have you passed the pivotted dataset to the `heatmap` function call?
 
 `@pre_exercise_code`
 ```{python}
@@ -47,15 +47,15 @@ data = pd.read_excel('Capstone_1_Data.xlsx')
 `@sample_code`
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
-q_data = data[data['_'] == _].groupby([_])[_].agg(_).reset_index()
+q_data = data[data[_] == _].groupby([_])[_].agg(_).reset_index()
 # Create a new column that calculates quartiles based on first month's Quantity
-q_data = q_data.assign(QuantityQuartile = pd.qcut(x=q_data[_], q=_, labels = range_, _) ))
+q_data = q_data.assign(QuantityQuartile = pd.qcut(x=q_data[_], q=_, labels = range(_, _) ))
 # Append the quartile values back to the original dataset
 data = data.merge(q_data[[_, _]], on=_, how=_).reset_index()
 # Calculate average spend for each cohort monthly
-q_agg = data.groupby([_, _])[_].mean()
+q_agg = data.groupby([_, _])[_].mean().reset_index()
 # Pivot the aggregated dataset so that Quartile values are in rows, and Cohort index is in columns 
-q_cohorts = q_agg.reset_index().pivot(index_, columns=_, values=_)
+q_cohorts = q_agg.pivot(index_, columns=_, values=_)
 # Plot the heatmap 
 plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
 sns.heatmap(_, annot=True, fmt='.1f', cmap='Blues')
@@ -70,9 +70,9 @@ q_data = q_data.assign(QuantityQuartile = pd.qcut(x=q_data['Quantity'], q=4, lab
 # Append the quartile values back to the original dataset
 data = data.merge(q_data[['CustomerID', 'QuantityQuartile']], on='CustomerID', how='left').reset_index()
 # Calculate average spend for each cohort monthly
-q_agg = data.groupby(['QuantityQuartile', 'CohortIndex'])['TotalSum'].mean()
+q_agg = data.groupby(['QuantityQuartile', 'CohortIndex'])['TotalSum'].mean().reset_index()
 # Pivot the aggregated dataset so that Quartile values are in rows, and Cohort index is in columns 
-q_cohorts = q_agg.reset_index().pivot(index='QuantityQuartile', columns='CohortIndex', values='TotalSum')
+q_cohorts = q_agg.pivot(index='QuantityQuartile', columns='CohortIndex', values='TotalSum')
 # Plot the heatmap 
 plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
 sns.heatmap(q_cohorts, annot=True, fmt='.1f', cmap='Blues')
