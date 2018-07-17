@@ -13,13 +13,10 @@ skills: 2
 key: 16f6ff0c7d
 
 ```
-This is the assignment text. It should help provide students with the background information needed.
-The instructions that follow should be in bullet point form with clear guidance for what is expected.
-
 **Learning objective:** Calculate the average monthly spend for Quantity-based cohorts
 
 You are given a transcational dataset we used in the exercises previously with all transactions, cohort month and cohort index calculated:
-['InvoiceNo', 'Quantity', 'CustomerID', 'TotalSum', 'CohortMonth', 'CohortIndex']
+**InvoiceNo,Quantity,CustomerID,TotalSum,CohortMonth,CohortIndex**
 
 You will follow the same steps we have completed for the time-based and size-based cohorts in the lectures. 
 
