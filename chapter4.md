@@ -1,6 +1,6 @@
 ---
 title       : Recency, Frequency, Monetary Value analysis
-description : Insert the chapter description here
+description : Learn how to use simple rule-based segmentation to understand and segment the customers
 
 ---
 ## Capstone Exercise

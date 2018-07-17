@@ -1,6 +1,6 @@
 ---
 title       : Market Basket Analysis
-description : Insert the chapter description here
+description : Explore association rules between products that are purchased together
 
 ---
 ## Capstone Exercise
@@ -11,9 +11,6 @@ lang: python
 xp: 100
 skills: 2
 key: 16f6ff0c7d
-
-
-
 ```
 
 We have loaded a one-hot-encodded orders dataset with invoice numbers in the rows, and product names in the columns. The values in the table are either 1 or 0, depending whether the product was in the order, or not. This dataset contains orders from France, in contrast to the previous example where orders were generated in Germany. Let's see if we can find meaningul and interesting market basket rules.
@@ -54,7 +51,7 @@ print(top5_lift)
 `@sct`
 ```{python}
 # Update this to something more informative.
-success_msg("Some praise! Then reinforce a learning objective from the exercise.")
+success_msg("Fantastic! You have now identified the market basket rules in France with highest lift - what do they tell you?")
 ```
 
 
