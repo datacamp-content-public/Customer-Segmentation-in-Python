@@ -16,7 +16,7 @@ key: 16f6ff0c7d
 This is the assignment text. It should help provide students with the background information needed.
 The instructions that follow should be in bullet point form with clear guidance for what is expected.
 
-**Learning objective:** Calculate average monthly spend for Quantity-based cohorts
+**Learning objective:** Calculate the average monthly spend for Quantity-based cohorts
 
 You are given a transcational dataset we used in the exercises previously with all transactions, cohort month and cohort index calculated:
 ['InvoiceNo', 'Quantity', 'CustomerID', 'TotalSum', 'CohortMonth', 'CohortIndex']
@@ -47,37 +47,35 @@ data = pd.read_excel('Capstone_1_Data.xlsx')
 `@sample_code`
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
-quantity_data = data[data['_'] == _].groupby([_])[_].agg(_).reset_index()
+q_data = data[data['_'] == _].groupby([_])[_].agg(_).reset_index()
 # Create a new column that calculates quartiles based on first month's Quantity
-quantity_data = quantity_data.assign(QuantityQuartile = pd.qcut(x=quantity_data[_], q=_, labels = range_, _) ))
+q_data = q_data.assign(QuantityQuartile = pd.qcut(x=q_data[_], q=_, labels = range_, _) ))
 # Append the quartile values back to the original dataset
-data = data.merge(quantity_data[[_, _]], on=_, how=_).reset_index()
+data = data.merge(q_data[[_, _]], on=_, how=_).reset_index()
 # Calculate average spend for each cohort monthly
-quantity_agg = data.groupby([_, _])[_].mean()
+q_agg = data.groupby([_, _])[_].mean()
 # Pivot the aggregated dataset so that Quartile values are in rows, and Cohort index is in columns 
-quantity_cohorts = quantity_agg.reset_index().pivot(index_, columns=_, values=_)
+q_cohorts = q_agg.reset_index().pivot(index_, columns=_, values=_)
 # Plot the heatmap 
-plt.figure(figsize=(12, 3))
-plt.title('Average Spend by Quantity quartiles')
+plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
 sns.heatmap(_, annot=True, fmt='.1f', cmap='Blues')
 plt.show()
 ```
 `@solution`
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
-quantity_data = data[data['CohortIndex'] == 1].groupby(['CustomerID'])['Quantity'].agg('sum').reset_index()
+q_data = data[data['CohortIndex'] == 1].groupby(['CustomerID'])['Quantity'].agg('sum').reset_index()
 # Create a new column that calculates quartiles based on first month's Quantity
-quantity_data = quantity_data.assign(QuantityQuartile = pd.qcut(x=quantity_data['Quantity'], q=4, labels = range(1,5) ))
+q_data = q_data.assign(QuantityQuartile = pd.qcut(x=q_data['Quantity'], q=4, labels = range(1,5) ))
 # Append the quartile values back to the original dataset
-data = data.merge(quantity_data[['CustomerID', 'QuantityQuartile']], on='CustomerID', how='left').reset_index()
+data = data.merge(q_data[['CustomerID', 'QuantityQuartile']], on='CustomerID', how='left').reset_index()
 # Calculate average spend for each cohort monthly
-quantity_agg = data.groupby(['QuantityQuartile', 'CohortIndex'])['TotalSum'].mean()
+q_agg = data.groupby(['QuantityQuartile', 'CohortIndex'])['TotalSum'].mean()
 # Pivot the aggregated dataset so that Quartile values are in rows, and Cohort index is in columns 
-quantity_cohorts = quantity_agg.reset_index().pivot(index='QuantityQuartile', columns='CohortIndex', values='TotalSum')
+q_cohorts = q_agg.reset_index().pivot(index='QuantityQuartile', columns='CohortIndex', values='TotalSum')
 # Plot the heatmap 
-plt.figure(figsize=(12, 3))
-plt.title('Average Spend by Quantity quartiles')
-sns.heatmap(quantity_cohorts, annot=True, fmt='.1f', cmap='Blues')
+plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
+sns.heatmap(q_cohorts, annot=True, fmt='.1f', cmap='Blues')
 plt.show()
 ```
 `@sct`
