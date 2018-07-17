@@ -81,7 +81,7 @@ plt.show()
 `@sct`
 ```{python}
 # Update this to something more informative.
-success_msg("Some praise! Then reinforce a learning objective from the exercise.")
+success_msg("Congratulations! You have now mastered cohort analysis and are ready to dig deep into your data!")
 ```
 
 
