@@ -31,8 +31,8 @@ We have successfully built RFM segments based on quartile values of recency, fre
 
 `@pre_exercise_code`
 ```{python}
-# Load datasets and packages here.
-print('Hello, DataCamp!')
+import pandas as pd
+data = pd.read_excel('RFM-Datamart.xlsx')
 ```
 `@sample_code`
 ```{python}
