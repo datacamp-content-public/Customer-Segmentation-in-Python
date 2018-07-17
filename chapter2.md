@@ -24,12 +24,10 @@ You are given a transcational dataset we used in the exercises previously with a
 You will follow the same steps we have completed for the time-based and size-based cohorts in the lectures. 
 
 `@instructions`
-- Instruction 1 - Calculate total Quantity purchased for each customer in their first month
-- Instruction 2 - Create a new column that calculates quartiles based on first month's Quantity
-- Instruction 3 - Append the quartile values back to the original dataset
-- Instruction 4 - Calculate average spend for each cohort monthly
-- Instruction 5 - Pivot the aggregated dataset so that Quartile values are in rows, and Cohort index is in columns
-- Instruction 6 - Plot the heatmap by passing the `quantity_cohorts` dataset to the function
+- Instruction 1 - Calculate total `Quantity` purchased for each customer in their first month
+- Instruction 2 - Create a new column that calculates quartiles based on first month's `Quantity` and append it to `data`
+- Instruction 3 - Calculate average spend for each cohort monthly and create a pivot 
+- Instruction 4 - Plot the heatmap by passing the `quantity_cohorts` dataset to the function
 
 `@hint`
 - Here is the hint for this setup problem. 
