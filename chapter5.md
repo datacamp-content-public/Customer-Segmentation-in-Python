@@ -1,6 +1,6 @@
 ---
 title       : Customer Segmentation with K-means clustering
-description : Use RFM data to build customer segments based on their recency, frequency, and monetary value
+description : Use data from previous chapter to build customer segments based on their recency, frequency, and monetary value
 
 ---
 ## Capstone Exercise

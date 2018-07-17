@@ -3,7 +3,7 @@ title       : DELETE
 description : Insert the chapter description here
 
 ---
-## Capstone Exercise
+## DELETE
 
 ```yaml
 type: NormalExercise

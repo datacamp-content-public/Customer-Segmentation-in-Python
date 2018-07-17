@@ -16,8 +16,7 @@ key: 16f6ff0c7d
 
 ```
 
-This is the assignment text. It should help provide students with the background information needed.
-The instructions that follow should be in bullet point form with clear guidance for what is expected.
+We have now successfully built RFM segments based on quartile values of recency, frequency and monetary value. Now, you will build 
 
 `@instructions`
 - Instruction 1
@@ -37,22 +36,23 @@ print('Hello, DataCamp!')
 ```
 `@sample_code`
 ```{python}
-# Your
-# sample
-# code
-# should
-# be
-# ideally
-# 10 lines or less,
-# with a max
-# of 16 lines.
+Tquartiles = pd.qcut(data['Tenure'], 4, labels = list(reversed(range(1,5))))
+data = data.assign(T = Tquartiles.values)
+top_recency = data[data['M']==1]
+monetary = top_recency.groupby(['RFMScore', 'T'])['CustomerID'].nunique().reset_index()
+mypivot = monetary.pivot(index='RFMScore', columns='T', values='CustomerID')
+print(mypivot)
+
 ```
 `@solution`
 ```{python}
-# Answer goes here
-# Make sure to match the comments with your sample code
-# to help students see the differences from solution
-# to given.
+Tquartiles = pd.qcut(data['Tenure'], 4, labels = list(reversed(range(1,5))))
+data = data.assign(T = Tquartiles.values)
+top_recency = data[data['M']==1]
+monetary = top_recency.groupby(['RFMScore', 'T'])['CustomerID'].nunique().reset_index()
+mypivot = monetary.pivot(index='RFMScore', columns='T', values='CustomerID')
+print(mypivot)
+
 ```
 `@sct`
 ```{python}
