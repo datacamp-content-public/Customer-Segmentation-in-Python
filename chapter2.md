@@ -12,8 +12,6 @@ xp: 100
 skills: 2
 key: 16f6ff0c7d
 
-
-
 ```
 
 This is the assignment text. It should help provide students with the background information needed.
@@ -33,26 +31,25 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 ```{python}
 # Load datasets and packages here.
-print('Hello, DataCamp!')
+
+import pandas as pd
+import seaborn as sns
+
+data = pd.read_excel('Capstone_1_Data.xlsx')
+
 ```
 `@sample_code`
 ```{python}
-# Your
-# sample
-# code
-# should
-# be
-# ideally
-# 10 lines or less,
-# with a max
-# of 16 lines.
+
+print(data[:5])
+
 ```
 `@solution`
 ```{python}
-# Answer goes here
-# Make sure to match the comments with your sample code
-# to help students see the differences from solution
-# to given.
+
+
+
+
 ```
 `@sct`
 ```{python}
