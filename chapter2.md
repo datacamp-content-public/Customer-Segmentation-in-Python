@@ -42,19 +42,14 @@ data = pd.read_excel('Capstone_1_Data.xlsx')
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
 quantity_data = data[data['_'] == _].groupby([_])[_].agg(_).reset_index()
-
 # Create a new column that calculates Quantity Quartile
 quantity_data = quantity_data.assign(QuantityQuartile = pd.qcut(x=quantity_data[_], q=_, labels = range_, _) ))
-
 # Append the quartile value back to the original dataset
 data = data.merge(quantity_data[[_, _]], on=_, how=_).reset_index()
-
 # Calculate average spend for each cohort monthly
 quantity_agg = data.groupby([_, _])[_].mean()
-
 # Pivot the aggregated dataset 
 quantity_cohorts = quantity_agg.reset_index().pivot(index_, columns=_, values=_)
-
 # Plot the heatmap 
 plt.figure(figsize=(12, 3))
 plt.title('Average Spend by Quantity quartiles')
@@ -65,19 +60,14 @@ plt.show()
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
 quantity_data = data[data['CohortIndex'] == 1].groupby(['CustomerID'])['Quantity'].agg('sum').reset_index()
-
 # Create a new column that calculates Quantity Quartile
 quantity_data = quantity_data.assign(QuantityQuartile = pd.qcut(x=quantity_data['Quantity'], q=4, labels = range(1,5) ))
-
 # Append the quartile value back to the original dataset
 data = data.merge(quantity_data[['CustomerID', 'QuantityQuartile']], on='CustomerID', how='left').reset_index()
-
 # Calculate average spend for each cohort monthly
 quantity_agg = data.groupby(['QuantityQuartile', 'CohortIndex'])['TotalSum'].mean()
-
 # Pivot the aggregated dataset 
 quantity_cohorts = quantity_agg.reset_index().pivot(index='QuantityQuartile', columns='CohortIndex', values='TotalSum')
-
 # Plot the heatmap 
 plt.figure(figsize=(12, 3))
 plt.title('Average Spend by Quantity quartiles')
