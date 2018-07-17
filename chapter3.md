@@ -16,7 +16,7 @@ key: 16f6ff0c7d
 
 ```
 
-We have loaded a one-hot-encodded orders dataset with invoice numbers in the rows, and product names in the columns. The values in the tables are either 1 or 0, depending whether the product was in the order, or not. This dataset contains orders from France, in contrast to the previous example where orders were generated in Germany. Let's see if we can find meaningul and interesting market basket rules.
+We have loaded a one-hot-encodded orders dataset with invoice numbers in the rows, and product names in the columns. The values in the table are either 1 or 0, depending whether the product was in the order, or not. This dataset contains orders from France, in contrast to the previous example where orders were generated in Germany. Let's see if we can find meaningul and interesting market basket rules.
 
 `@instructions`
 - Run `apriori` function on the `basket` dataset with minimum support threshold at 0.01, store the result to `apriori_data`.

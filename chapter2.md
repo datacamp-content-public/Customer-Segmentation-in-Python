@@ -1,6 +1,6 @@
 ---
 title       : Cohort Analysis
-description : Insert the chapter description here
+description : Understand customers based on their unique behavioral attributes
 
 ---
 ## Capstone Exercise
