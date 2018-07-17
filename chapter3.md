@@ -32,27 +32,22 @@ The instructions that follow should be in bullet point form with clear guidance 
 
 `@pre_exercise_code`
 ```{python}
-# Load datasets and packages here.
-print('Hello, DataCamp!')
+import pandas as pd
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+
+basket = pd.read_excel('BasketFR.xlsx')
 ```
 `@sample_code`
 ```{python}
-# Your
-# sample
-# code
-# should
-# be
-# ideally
-# 10 lines or less,
-# with a max
-# of 16 lines.
+
 ```
 `@solution`
 ```{python}
-# Answer goes here
-# Make sure to match the comments with your sample code
-# to help students see the differences from solution
-# to given.
+apriori_data = apriori(basket, min_support=0.01, use_colnames=True)
+arules = association_rules(apriori_data, min_threshold=10.0, metric='lift')
+top5_lift = arules[arules['support']>0.025].sort_values(by=['lift'], ascending=False)[0:5]
+top5_lift
 ```
 `@sct`
 ```{python}
