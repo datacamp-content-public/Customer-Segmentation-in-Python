@@ -22,10 +22,10 @@ We have successfully built RFM segments based on quartile values of recency, fre
 - Pivot the results from previous task with RFM Score in rows and Tenure quartiles in columns, use the customer count as values
 
 `@hint`
-- Are you sure you are building quartiles (four groups), and have passed the right values to the arguments
-- Check if you are using the right column for monetary quartile, and are filtering the top quartile only
-- Have you used the correct values in the `groupby` clause? Also, make sure you use `nunique()` function to aggregate CustomerIDs
-- Make sure you passed the right variables to `index`, `column`, and `values` arguments
+- Quartiles are four groups of equal size. Make sure labels start from 1
+- Are you using monetary quartile column, and filtering the top one only?
+- Have you used `nunique()` function to count customers?
+- Have you passed the right variables to `index`, `column`, and `values`?
 
 `@pre_exercise_code`
 ```{python}
