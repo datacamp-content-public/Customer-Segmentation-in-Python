@@ -3,7 +3,7 @@ title       : Customer Segmentation with K-means clustering
 description : Use data from previous chapter to build customer segments based on their recency, frequency, and monetary value
 
 ---
-## Capstone Exercise 1.1 - Data Preparation for Clustering
+## Capstone Exercise 1.1
 
 ```yaml
 type: NormalExercise
@@ -65,7 +65,7 @@ success_msg("Some praise! Then reinforce a learning objective from the exercise.
 ```
 
 ---
-## Capstone Exercise 1.2 - Clustering customers on monthly metrics
+## Capstone Exercise 1.2
 
 ```yaml
 type: NormalExercise
