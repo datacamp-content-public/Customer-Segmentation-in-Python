@@ -25,7 +25,7 @@ We have successfully built RFM segments based on quartile values of recency, fre
 - Are you sure you are building quartiles (four groups), and have passed the right values to the arguments
 - Check if you are using the right column for monetary quartile, and are filtering the top quartile only
 - Have you used the correct values in the `groupby` clause? Also, make sure you use `nunique()` function to aggregate CustomerIDs
-- Make sure you passed the right variables to `index`, `column`, and `values` arguments. If aggregated and not renamed, the new variable retain the name of the original variable
+- Make sure you passed the right variables to `index`, `column`, and `values` arguments
 
 `@pre_exercise_code`
 ```{python}
