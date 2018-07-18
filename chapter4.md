@@ -11,23 +11,21 @@ lang: python
 xp: 100
 skills: 2
 key: 16f6ff0c7d
-
-
-
 ```
 
 We have successfully built RFM segments based on quartile values of recency, frequency and monetary value. Now, you will build quartiles based on a fourth metric of `Tenure`. Then, you will select the customers in the highest `MonetaryValue` quartile. Finally, you will then count the number of customers in the remaining dataset grouped by tenure quartiles and RFM scores. Your goal will be to identify the largest customer groups to select for targeting in a customized marketing campaign.
 
 `@instructions`
-- Instruction 1
-- Instruction 2
-- Instruction 3
+- Create quartile values based on `Tenure` variable and pass it as a new column in `data`
+- Filter out top 1 Monetary value quartile and store the result to `top_recency` dataset
+- Count the number of unique customers in each RFM score and Tenure quartile combination and store to `monetary` dataset
+- Pivot the results from previous task with RFM Score in rows and Tenure quartiles in columns, use the customer count as values
 
 `@hint`
-- Here is the hint for this setup problem. 
-- It should get students 50% of the way to the correct answer.
-- So don't provide the answer, but don't just reiterate the instructions.
-- Typically one hint per instruction is a sensible amount.
+- Are you sure you are building quartiles (four groups), and have passed the right values to the arguments
+- Check if you are using the right column for monetary quartile, and are filtering the top quartile only
+- Have you used the correct values in the `groupby` clause? Also, make sure you use `nunique()` function to aggregate CustomerIDs
+- Make sure you passed the right variables to `index`, `column`, and `values` arguments. If aggregated and not renamed, the new variable retain the name of the original variable
 
 `@pre_exercise_code`
 ```{python}
@@ -37,7 +35,7 @@ data = pd.read_excel('RFM-Datamart.xlsx')
 `@sample_code`
 ```{python}
 Tquartiles = pd.qcut(x=data[_], q=_, labels = list(reversed(range(_, _))))
-data = data.assign(T = Tquartiles.values)
+data = data.assign(T = _.values)
 top_recency = data[data[_]==_]
 monetary = top_recency.groupby([_, _])[_]._.reset_index()
 mypivot = monetary.pivot(index=_, columns=_, values=_)
