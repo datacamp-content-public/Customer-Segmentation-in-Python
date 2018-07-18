@@ -13,8 +13,7 @@ skills: 2
 key: 16f6ff0c7d
 
 ```
-This is the assignment text. It should help provide students with the background information needed.
-The instructions that follow should be in bullet point form with clear guidance for what is expected.
+We have loaded a 
 
 `@instructions`
 - Instruction 1
@@ -31,9 +30,7 @@ The instructions that follow should be in bullet point form with clear guidance 
 ```{python}
 import pandas as pd
 import numpy as np
-from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import silhouette_score
 
 datamart_kmeans = pd.read_excel('datamart_kmeans.xlsx')
 print(datamart_kmeans[:5])
@@ -92,10 +89,7 @@ The instructions that follow should be in bullet point form with clear guidance 
 `@pre_exercise_code`
 ```{python}
 import pandas as pd
-import numpy as np
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import silhouette_score
 
 # Dataset that will be used is a numpy ndarray from previous exercise
 data_log_and_scaled = data_log_and_scaled
