@@ -84,15 +84,16 @@ Finally, we will analyze the average values of these variables for each segment.
 We have loaded the `data_log_and_scaled` from your previous exercise, together with `online_kmeans` dataset which has original `FrequencyMonthly`, `PriceAverage`, and `Tenure` variables, together with `MonetaryValue` data.
 
 `@instructions`
-- Initialize `KMeans` with four cluster, random state of 99 and pass the log-scaled data to the `fit` function
-- Store cluster labels to `cluster_labels` dataset and create a new `cluster` column in the `online_kmeans` dataset by passing previously saved labels
-- Finally, aggregate the dataset by the `cluster`, and calculate average values for each of the four variables, plus - pass `count` to the last one to get the number of customers as a last column.
+- Initialize `KMeans` with four clusters, random state of 99 and pass the log-scaled data to the `fit` function.
+- Store cluster labels to `cluster_labels` dataset.
+- Create a new `cluster` column in the `online_kmeans` dataset by passing previously saved labels.
+- Finally, aggregate the dataset by the `cluster`, and calculate average values for each of the four variables.
 
 `@hint`
-- Here is the hint for this setup problem. 
-- It should get students 50% of the way to the correct answer.
-- So don't provide the answer, but don't just reiterate the instructions.
-- Typically one hint per instruction is a sensible amount.
+- Have you initialized four (4) clusters and a random state of 99?
+- Capture the labels from newly created clusters - remember the labels are named with an underscore at the end.
+- Did you pass the labels to the new column?
+- Have you added all four columns of `online_kmeans` and calculated average for each?
 
 `@pre_exercise_code`
 ```{python}
@@ -111,8 +112,8 @@ online_kmeans.groupby([_]).agg({
     _: _,
     _: _,
     _: _,
-    _: [_, _]
-}).round(_)
+    _: [_, 'count']
+}).round(1)
 ```
 `@solution`
 ```{python}
@@ -129,6 +130,6 @@ online_kmeans.groupby(['cluster']).agg({
 `@sct`
 ```{python}
 # Update this to something more informative.
-success_msg("Some praise! Then reinforce a learning objective from the exercise.")
+success_msg("Amazing segmentation solution! Now you are ready to revolutionize your marketing strategy with customized campaigns!")
 ```
 
