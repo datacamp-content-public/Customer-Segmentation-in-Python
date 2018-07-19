@@ -13,18 +13,23 @@ skills: 2
 key: 16f6ff0c7d
 
 ```
-We have loaded a 
+We have loaded different data for the same customers as `datamart_kmeans`. You will find three varialbes for each `CustomerID`: `FrequencyMonthly`, `PriceAverage`, and `Tenure`.
+
+Now, you job will be to first pre-process the data as in the lectures - transform it to the log scale, and scale it. 
+
+In the next part of this exercise you will cluster the customer using this data and then identify most valuable segments.
 
 `@instructions`
-- Instruction 1
-- Instruction 2
-- Instruction 3
+- Transform the `datamart_kmeans` dataset on a log scale, and store to `data_log`
+- Fit the intialized scaler with the log-transformed data
+- Transform the data to a scaled version and store it to `data_log_and_scaled`
+- Finally, print the top 10 rows of the transformed dataset
 
 `@hint`
-- Here is the hint for this setup problem. 
-- It should get students 50% of the way to the correct answer.
-- So don't provide the answer, but don't just reiterate the instructions.
-- Typically one hint per instruction is a sensible amount.
+- Have you passed the loaded dataset to the `log` function?
+- Make sure the log-scaled data is passed to the `fit` method of the `scaler`
+- This function expects the same log-scaled data as in the previous step
+- Are you sure you are only printing 10 rows?
 
 `@pre_exercise_code`
 ```{python}
@@ -43,7 +48,7 @@ data_log = np.log(_)
 scaler = StandardScaler()
 scaler.fit(_)
 data_log_and_scaled = scaler.transform(_)
-data_log_and_scaled[_:_]
+print(data_log_and_scaled[_:_])
 ```
 `@solution`
 ```{python}
@@ -53,12 +58,12 @@ data_log = np.log(datamart_kmeans)
 scaler = StandardScaler()
 scaler.fit(data_log)
 data_log_and_scaled = scaler.transform(data_log)
-data_log_and_scaled[0:10]
+print(data_log_and_scaled[0:10])
 ```
 `@sct`
 ```{python}
 # Update this to something more informative.
-success_msg("Some praise! Then reinforce a learning objective from the exercise.")
+success_msg("Great job! We are now ready to use this data for building customer segments with K-means clustering!")
 ```
 
 ---
@@ -72,13 +77,16 @@ skills: 2
 key: 2de4591a58
 ```
 
-This is the assignment text. It should help provide students with the background information needed.
-The instructions that follow should be in bullet point form with clear guidance for what is expected.
+You will now build four customer segments with K-means clustering on previously pre-processed `FrequencyMonthly`, `PriceAverage`, and `Tenure` variables.
+
+Finally, we will analyze the average values of these variables for each segment.
+
+We have loaded the `data_log_and_scaled` from your previous exercise, together with `online_kmeans` dataset which has original `FrequencyMonthly`, `PriceAverage`, and `Tenure` variables, together with `MonetaryValue` data.
 
 `@instructions`
-- Instruction 1
-- Instruction 2
-- Instruction 3
+- Initialize `KMeans` with four cluster, random state of 99 and pass the log-scaled data to the `fit` function
+- Store cluster labels to `cluster_labels` dataset and create a new `cluster` column in the `online_kmeans` dataset by passing previously saved labels
+- Finally, aggregate the dataset by the `cluster`, and calculate average values for each of the four variables, plus - pass `count` to the last one to get the number of customers as a last column.
 
 `@hint`
 - Here is the hint for this setup problem. 
@@ -91,18 +99,18 @@ The instructions that follow should be in bullet point form with clear guidance 
 import pandas as pd
 from sklearn.cluster import KMeans
 
-# Dataset that will be used is a numpy ndarray from previous exercise
-data_log_and_scaled = data_log_and_scaled
+data_log_and_scaled = pd.read_excel('kmeans_data_logscaled.xlsx')
+online_kmeans = pd.read_excel('online_kmeans.xlsx')
 ```
 `@sample_code`
 ```{python}
 kmeans = KMeans(n_clusters=_, random_state=_).fit(_)
 cluster_labels = kmeans._
-datamart = datamart.assign(cluster = _)
-datamart.groupby([_]).agg({
+online_kmeans = online_kmeans.assign(cluster = _)
+online_kmeans.groupby([_]).agg({
     _: _,
     _: _,
-    _: 'mean',
+    _: _,
     _: [_, _]
 }).round(_)
 ```
@@ -110,8 +118,8 @@ datamart.groupby([_]).agg({
 ```{python}
 kmeans = KMeans(n_clusters=4, random_state=99).fit(data_log_and_scaled)
 cluster_labels = kmeans.labels_
-datamart = datamart.assign(cluster = cluster_labels)
-datamart.groupby(['cluster']).agg({
+online_kmeans = online_kmeans.assign(cluster = cluster_labels)
+online_kmeans.groupby(['cluster']).agg({
     'FrequencyMonthly': 'mean',
     'PriceAverage': 'mean',
     'Tenure': 'mean',
