@@ -1,5 +1,5 @@
 ---
-title       : Market Basket Analysis
+title       : 1. Market Basket Analysis
 description : Explore association rules between products that are purchased together
 
 ---

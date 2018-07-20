@@ -1,5 +1,5 @@
 ---
-title       : Cohort Analysis
+title       : 2. Cohort Analysis
 description : Understand customers based on their unique behavioral attributes
 
 ---

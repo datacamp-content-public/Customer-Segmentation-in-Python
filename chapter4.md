@@ -1,5 +1,5 @@
 ---
-title       : Recency, Frequency, Monetary Value analysis
+title       : 3. Recency, Frequency, Monetary Value analysis
 description : Learn how to use simple rule-based segmentation to understand and segment the customers
 
 ---

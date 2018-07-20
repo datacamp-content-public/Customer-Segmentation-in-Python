@@ -1,5 +1,5 @@
 ---
-title       : Customer Segmentation with K-means clustering
+title       : 4. Customer Segmentation with K-means clustering
 description : Use data from previous chapter to build customer segments based on their recency, frequency, and monetary value
 
 ---
