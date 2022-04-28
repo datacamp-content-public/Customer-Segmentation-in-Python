@@ -1,16 +1,17 @@
 ---
-title       : 1. Market Basket Analysis
-description : Explore association rules between products that are purchased together
-
+title: 1. Market Basket Analysis
+description: Explore association rules between products that are purchased together
 ---
+
 ## Capstone Exercise
 
 ```yaml
 type: NormalExercise
+key: 16f6ff0c7d
 lang: python
 xp: 100
-skills: 2
-key: 16f6ff0c7d
+skills:
+  - 2
 ```
 
 We have loaded a one-hot-encodded orders dataset with invoice numbers in the rows, and product names in the columns. The values in the table are either 1 or 0, depending whether the product was in the order, or not. This dataset contains orders from France, in contrast to the previous example where orders were generated in Germany. Let's see if we can find meaningul and interesting market basket rules.
@@ -34,6 +35,7 @@ from mlxtend.frequent_patterns import association_rules
 
 basket = pd.read_excel('BasketFR.xlsx')
 ```
+
 `@sample_code`
 ```{python}
 apriori_data = apriori(_, min_support=_, use_colnames=True)
@@ -41,6 +43,7 @@ arules = association_rules(_, min_threshold=_, metric=_)
 top5_lift = arules[arules['support']>_].sort_values(by=[_], ascending=_)[0:_]
 print(top5_lift)
 ```
+
 `@solution`
 ```{python}
 apriori_data = apriori(basket, min_support=0.01, use_colnames=True)
@@ -48,12 +51,9 @@ arules = association_rules(apriori_data, min_threshold=2.0, metric='lift')
 top5_lift = arules[arules['support']>0.04].sort_values(by=['lift'], ascending=False)[0:5]
 print(top5_lift)
 ```
+
 `@sct`
 ```{python}
 # Update this to something more informative.
 success_msg("Fantastic! You have now identified the market basket rules in France with highest lift - what do they tell you?")
 ```
-
-
-
-

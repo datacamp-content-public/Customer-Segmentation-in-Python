@@ -1,24 +1,25 @@
 ---
-title       : 2. Cohort Analysis
-description : Understand customers based on their unique behavioral attributes
-
+title: 2. Cohort Analysis
+description: Understand customers based on their unique behavioral attributes
 ---
+
 ## Capstone Exercise
 
 ```yaml
 type: NormalExercise
+key: 16f6ff0c7d
 lang: python
 xp: 100
-skills: 2
-key: 16f6ff0c7d
-
+skills:
+  - 2
 ```
+
 **Learning objective:** Calculate the average monthly spend for Quantity-based cohorts
 
 You are given a transcational dataset we used in the exercises previously with all transactions, cohort month and cohort index calculated:
 **InvoiceNo,Quantity,CustomerID,TotalSum,CohortMonth,CohortIndex**
 
-You will follow the same steps we have completed for the time-based and size-based cohorts in the lectures. 
+You will follow the same steps we have completed for the time-based and size-based cohorts in the lectures.
 
 `@instructions`
 - Instruction 1 - Calculate total `Quantity` purchased for each customer in their first month.
@@ -41,6 +42,7 @@ import seaborn as sns
 data = pd.read_excel('Capstone_1_Data.xlsx')
 
 ```
+
 `@sample_code`
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
@@ -58,6 +60,7 @@ plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
 sns.heatmap(_, annot=True, fmt='.1f', cmap='Blues')
 plt.show()
 ```
+
 `@solution`
 ```{python}
 # Calculate total Quantity purchased for each customer in their first month
@@ -75,12 +78,9 @@ plt.figure(figsize=(12, 3)); plt.title('Average Spend by Quantity quartiles')
 sns.heatmap(q_cohorts, annot=True, fmt='.1f', cmap='Blues')
 plt.show()
 ```
+
 `@sct`
 ```{python}
 # Update this to something more informative.
 success_msg("Congratulations! You have now mastered cohort analysis and are ready to dig deep into your data!")
 ```
-
-
-
-

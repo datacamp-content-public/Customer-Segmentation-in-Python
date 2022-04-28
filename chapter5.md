@@ -1,18 +1,21 @@
 ---
-title       : 4. Customer Segmentation with K-means clustering
-description : Use data from previous chapter to build customer segments based on their recency, frequency, and monetary value
-
+title: 4. Customer Segmentation with K-means clustering
+description: >-
+  Use data from previous chapter to build customer segments based on their
+  recency, frequency, and monetary value
 ---
+
 ## Capstone Exercise 1.1
 
 ```yaml
 type: NormalExercise
+key: 16f6ff0c7d
 lang: python
 xp: 100
-skills: 2
-key: 16f6ff0c7d
-
+skills:
+  - 2
 ```
+
 We have loaded different data for the same customers as `datamart_kmeans`. You will find three varialbes for each `CustomerID`: `FrequencyMonthly`, `PriceAverage`, and `Tenure`.
 
 Now, you job will be to first pre-process the data as in the lectures - transform it to the log scale, and scale it. 
@@ -40,6 +43,7 @@ from sklearn.preprocessing import StandardScaler
 datamart_kmeans = pd.read_excel('datamart_kmeans.xlsx')
 print(datamart_kmeans[:5])
 ```
+
 `@sample_code`
 ```{python}
 # Transform inputs to a log scale
@@ -50,6 +54,7 @@ scaler.fit(_)
 data_log_and_scaled = scaler.transform(_)
 print(data_log_and_scaled[_:_])
 ```
+
 `@solution`
 ```{python}
 # Transform inputs to a log scale
@@ -60,6 +65,7 @@ scaler.fit(data_log)
 data_log_and_scaled = scaler.transform(data_log)
 print(data_log_and_scaled[0:10])
 ```
+
 `@sct`
 ```{python}
 # Update this to something more informative.
@@ -67,14 +73,16 @@ success_msg("Great job! We are now ready to use this data for building customer 
 ```
 
 ---
+
 ## Capstone Exercise 1.2
 
 ```yaml
 type: NormalExercise
+key: 2de4591a58
 lang: python
 xp: 100
-skills: 2
-key: 2de4591a58
+skills:
+  - 2
 ```
 
 You will now build four customer segments with K-means clustering on previously pre-processed `FrequencyMonthly`, `PriceAverage`, and `Tenure` variables.
@@ -103,6 +111,7 @@ from sklearn.cluster import KMeans
 data_log_and_scaled = pd.read_excel('kmeans_data_logscaled.xlsx')
 online_kmeans = pd.read_excel('online_kmeans.xlsx')
 ```
+
 `@sample_code`
 ```{python}
 kmeans = KMeans(n_clusters=_, random_state=_).fit(_)
@@ -115,6 +124,7 @@ online_kmeans.groupby([_]).agg({
     _: [_, 'count']
 }).round(1)
 ```
+
 `@solution`
 ```{python}
 kmeans = KMeans(n_clusters=4, random_state=99).fit(data_log_and_scaled)
@@ -127,9 +137,9 @@ online_kmeans.groupby(['cluster']).agg({
     'MonetaryValue': ['mean', 'count']
 }).round(1)
 ```
+
 `@sct`
 ```{python}
 # Update this to something more informative.
 success_msg("Amazing segmentation solution! Now you are ready to revolutionize your marketing strategy with customized campaigns!")
 ```
-
